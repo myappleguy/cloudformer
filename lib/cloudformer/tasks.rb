@@ -24,11 +24,11 @@ module Cloudformer
     private
 
     def tasks_by_type task_type
-      Rake::TaskManager.tasks.select{ |t| t.name.starts_with task_type.to_s }
+      Rake.application.tasks.select{ |t| t.name.start_with? task_type.to_s }
     end
 
     def task_by_name task_type, task_name
-      tasks_by_type(task_type).select{ |t| t.name.ends_with task_name }
+      tasks_by_type(task_type).select{ |t| t.name.end_with? task_name }
     end
 
     def tasks_to_run task_type, task_name
